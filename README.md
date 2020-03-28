@@ -1,4 +1,4 @@
-This repository was forked by @phonnz
+This repository was forked from @phonnz
 
 I hope this web-app help to analize the data and make your opinions stronger.
 
