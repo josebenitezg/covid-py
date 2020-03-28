@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { ResponsiveContainer, ReferenceLine, LineChart, Legend, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { Flag } from 'semantic-ui-react'
-import Mexico from './Flags/Paraguay';
+import Paraguay from './Flags/Paraguay';
 
 class growChart extends Component {
   state = {
@@ -38,7 +38,7 @@ class growChart extends Component {
           {this.props.countries.map(country => {
 
               if(country.key == "Paraguay"){
-                return (<Line key={country.key} type="monotone" dataKey={country.key} stroke={this.getRandomColor(country)} strokeWidth={3} label={country.name} dot={Mexico}  />)
+                return (<Line key={country.key} type="monotone" dataKey={country.key} stroke={this.getRandomColor(country)} strokeWidth={3} label={country.name} dot={Paraguay}  />)
                 
               }  else {
                 
