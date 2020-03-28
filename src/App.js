@@ -21,8 +21,11 @@ class App extends Component {
     this.state = {
       jsonData: null,
       refreshing: false,
-      mxacccases: 475,
-      mxTests: 278,
+      pyacccases: 475,
+      pyTests: 278,
+      pydeath: 1,
+      totalDeaths: 1,
+      totalConfirmed: 1
     };
   }
 
@@ -66,7 +69,7 @@ class App extends Component {
 
   maxCases(data, date, country){
     return (data.filter(row => row['Country/Region'] === country))[0][date]
-    
+
   }
 
   getInfectedData(src) {
@@ -94,7 +97,7 @@ class App extends Component {
           // wdData: this.transformData(results.data, countries, fields.slice(35, fields.length), 'wd' ),
           // optionData: this.transformData(results.data, countries, fields.slice(40, fields.length), 'option'),
           // earlyData: this.transformData(results.data, countries, fields.slice(55, fields.length), 'early'),
-          mxacccases: this.maxCases(results.data, lastColumn, "Mexico"),
+          pyacccases: this.maxCases(results.data, lastColumn, "Paraguay"),
         });
         
       },
@@ -125,7 +128,7 @@ class App extends Component {
           wdData: this.transformData(results.data, countries, fields.slice(55, fields.length), 'wd' ),
           optionData: this.transformData(results.data, countries, fields.slice(48, fields.length), 'option'),
           earlyData: this.transformData(results.data, countries, fields.slice(45, fields.length), 'early'),
-          // mxacccases: this.maxCases(results.data, lastColumn, "Mexico"),
+          pydeath: this.maxCases(results.data, lastColumn, "Paraguay"),
         });
         
       },
@@ -158,7 +161,8 @@ class App extends Component {
 
     return (
       <Container fluid>
-        <h1>{this.state.mxacccases} casos confirmados en México 🇲🇽 al {this.state.date} </h1>
+        <h1>{this.state.pyacccases} casos confirmados en Paraguay 🇵🇾 al {this.state.date} </h1>
+        <h1>{this.state.pydeath} fallecidos confirmados en Paraguay 🇵🇾 al {this.state.date} </h1>
           <Grid stackable>
             <Grid.Row>
               <Grid.Column width={8}>
@@ -184,10 +188,9 @@ class App extends Component {
           </Grid>
           <Divider />
           <Container text>
-            <p>Cualquier comentario, duda o sugerencia puedes comentarme <a href="https://twitter.com/phonnz/" target="_blank">@phonnz</a> <a href="https://github.com/phonnz/covid-mx" target="_blank">Github</a></p>
-            <p>Inspirado en la prueba de <a href="https://snack.expo.io/@xnt/coronavirus-ca" target="_blank">@xnt</a> el dashboard de <a href="https://covid.sdelmont.com/" target="_blank">@sd</a></p>
+            <p>Inspirado en la repo de <a href="https://github.com/phonnz/covid-mx" target="_blank">@phonnz</a></p>
             <p><a href="https://experience.arcgis.com/experience/685d0ace521648f8a5beeeee1b9125cd" target="_blank">WHO</a> | <a href="https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6" target="_blank">JHU</a> | <a href="https://covid19.isciii.es/" target="_blank">ISC</a></p>
-            <p>Datos de: <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">JHU</a></p>
+            <p>Datos de: <a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">Johns Hopkins CSSE</a></p>
           </Container>
       </Container>
       

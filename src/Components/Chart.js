@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { ResponsiveContainer, ReferenceLine, LineChart, Legend, Line, CartesianGrid, XAxis, YAxis, Tooltip } from 'recharts';
 import { Flag } from 'semantic-ui-react'
-import Mexico from './Flags/Mexico';
+import Mexico from './Flags/Paraguay';
 
 class growChart extends Component {
   state = {
@@ -12,7 +12,7 @@ class growChart extends Component {
 
 
   getRandomColor = (country) => {
-    if(country.key === "Mexico") return '#de2d1b'
+    if(country.key === "Paraguay") return '#de2d1b'
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
@@ -31,13 +31,13 @@ class growChart extends Component {
           <XAxis dataKey="name" />
           <YAxis  type="number" label={{ value: 'Fallecidos', angle: -90, position: 'insideLeft' }}  />
           {/* <ReferenceLine y={75} label="Max" stroke="red" /> */}
-          <ReferenceLine x='3/22/20' stroke="red" label="Fase II MX" />
+          <ReferenceLine x='3/09/20' stroke="red" label="Fase II PY" />
           <CartesianGrid strokeDasharray="25 25" />
           <Tooltip />
           <Legend label="Confirmados acumulados" />
           {this.props.countries.map(country => {
 
-              if(country.key == "Mexico"){
+              if(country.key == "Paraguay"){
                 return (<Line key={country.key} type="monotone" dataKey={country.key} stroke={this.getRandomColor(country)} strokeWidth={3} label={country.name} dot={Mexico}  />)
                 
               }  else {
