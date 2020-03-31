@@ -9,7 +9,7 @@ class growChart extends Component {
       { name: 'Page 0', mx: 400, },
     ]
   }
-
+//ad some original flags
 
   getRandomColor = (country) => {
     if(country.key === "Paraguay") return '#de2d1b'
