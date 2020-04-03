@@ -83,6 +83,10 @@ class App extends Component {
         } = results;
         // const { refreshing } = this.state;
         const lastColumn = fields[fields.length - 1];
+        let sumConfirmed = 0
+        for(var i = 0; i < results.data.length-1; i++){
+          sumConfirmed = sumConfirmed + parseInt(results.data[i][lastColumn])
+        }
         // if (refreshing === true) { 
         //   console.log("Updated via pull-to-refresh")
         // }
@@ -98,6 +102,7 @@ class App extends Component {
           // optionData: this.transformData(results.data, countries, fields.slice(40, fields.length), 'option'),
           // earlyData: this.transformData(results.data, countries, fields.slice(55, fields.length), 'early'),
           pyacccases: this.maxCases(results.data, lastColumn, "Paraguay"),
+          totalConfirmed: sumConfirmed
         });
         
       },
@@ -115,6 +120,10 @@ class App extends Component {
         } = results;
         // const { refreshing } = this.state;
         const lastColumn = fields[fields.length - 1];
+        let sumDeath = 0
+        for(var i = 0; i < results.data.length-1; i++){
+          sumDeath = sumDeath + parseInt(results.data[i][lastColumn])
+        }
         // if (refreshing === true) { 
         //   console.log("Updated via pull-to-refresh")
         // }
@@ -129,6 +138,7 @@ class App extends Component {
           optionData: this.transformData(results.data, countries, fields.slice(48, fields.length), 'option'),
           earlyData: this.transformData(results.data, countries, fields.slice(45, fields.length), 'early'),
           pydeath: this.maxCases(results.data, lastColumn, "Paraguay"),
+          totalDeaths: sumDeath
         });
         
       },
@@ -161,6 +171,7 @@ class App extends Component {
 
     return (
       <Container fluid>
+        <h1>{this.state.totalDeaths} fallecidos y {this.state.totalConfirmed} casos confirmados en el mundo 🌍 al {this.state.date} </h1>
         <h1>{this.state.pyacccases} casos confirmados y {this.state.pydeath} fallecidos en Paraguay 🇵🇾 al {this.state.date} </h1>
           <Grid stackable>
             <Grid.Row>
