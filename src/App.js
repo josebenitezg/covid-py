@@ -161,8 +161,7 @@ class App extends Component {
 
     return (
       <Container fluid>
-        <h1>{this.state.pyacccases} casos confirmados en Paraguay 🇵🇾 al {this.state.date} </h1>
-        <h1>{this.state.pydeath} fallecidos confirmados en Paraguay 🇵🇾 al {this.state.date} </h1>
+        <h1>{this.state.pyacccases} casos confirmados y {this.state.pydeath} fallecidos en Paraguay 🇵🇾 al {this.state.date} </h1>
           <Grid stackable>
             <Grid.Row>
               <Grid.Column width={8}>
