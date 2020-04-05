@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, GridColumn, Divider } from 'semantic-ui-react'
+import { Container, Grid, Menu, Divider } from 'semantic-ui-react'
 import Papa from 'papaparse';
 import axios from 'axios'
 import Chart from './Components/Chart';
@@ -19,17 +19,26 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      jsonData: null,
+      confirmedData: null,
       refreshing: false,
       pyacccases: 475,
       pyTests: 278,
       pydeath: 1,
       totalDeaths: 1,
-      totalConfirmed: 1
+      totalConfirmed: 1,
+      srcSelector: 'confirmed'
     };
   }
 
+  getMaxRange() {
+    if (this.state.srcSelector === 'deaths') {
+      return this.state.pydeath
+    } else {
+      return this.state.pyacccases
+    }
+  }
 
+  changeDataSrc = (e, { id }) => { this.setState({ srcSelector: id }) }
 
   transformData = (data, countries, fields, selector) => {
     
@@ -97,7 +106,7 @@ class App extends Component {
         this.setState({
           date: lastColumn,
           refreshing: false,
-          jsonData: exclusiveData,
+          confirmedData: exclusiveData,
           similarIData: this.transformData(results.data, countries, fields.slice(50, fields.length), 'similar'),
           wdIData: this.transformData(results.data, countries, fields.slice(35, fields.length), 'wd' ),
           optionIData: this.transformData(results.data, countries, fields.slice(40, fields.length), 'option'),
@@ -154,6 +163,13 @@ class App extends Component {
     });
   }
 
+  getDataset() {
+    if (this.state.srcSelector === 'deaths') {
+      return this.state.similarDData
+    } else {
+      return this.state.similarIData
+    }
+  }
 
   componentDidMount() {
     this.getInfectedData(hopkins_confirmed);
@@ -170,7 +186,7 @@ class App extends Component {
   }
 
   render() {
-    const { jsonData, 
+    const { confirmedData, 
       date, 
       similarIData,
       wdIData,
@@ -180,56 +196,54 @@ class App extends Component {
       wdDData,
       earlyDData,
       optionDData,  
+      srcSelector
       } = this.state;
+      const nameTabA = `Gráfico fallecidos`
+      const nameTabB = `Gráfico confirmados`
+  
+      const currentStringDate = `Actualizado al ${(new Date(date)).toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}`  
 
     return (
       <Container fluid>
-        <h1>En el mundo 🌍 Fallecidos: {this.state.totalDeaths} - Infectados: {this.state.totalConfirmed}. Actualizado al {this.state.date} </h1>
-        <h1>En Paraguay 🇵🇾 Fallecidos: {this.state.pydeath} - Infectados: {this.state.pyacccases}. Actualizado al {this.state.date} </h1>
+        <h1>En el mundo 🌍 Fallecidos: {this.state.totalDeaths} - Infectados: {this.state.totalConfirmed} </h1>
+        <h1>En Paraguay 🇵🇾 Fallecidos: {this.state.pydeath} - Infectados: {this.state.pyacccases} </h1>
+        <small>{currentStringDate}</small>
+        <Menu inverted tabular>
+          <Menu.Item
+            id='deaths'
+            name={nameTabA}
+            active={srcSelector === 'deaths'}
+            onClick={this.changeDataSrc}
+          />
+          <Menu.Item
+            id='confirmed'
+            name={nameTabB}
+            active={srcSelector === 'confirmed'}
+            onClick={this.changeDataSrc}
+          />
+        </Menu>
           <Grid stackable>
             <Grid.Row>
               <Grid.Column width={8}>
-                <h3>Fallecidos por covid-19 en países similares en LatAm</h3>
-                <Chart data={similarDData} countries={countries.filter(c => c.similar )}  />
+                <h3>Países similares en LatAm</h3>
+                <Chart data={this.getDataset()} countries={countries.filter(c => c.similar )}  />
               </Grid.Column>
               <Grid.Column width={8}>
-                <h3>Fallecidos por covid-19 en países que consiguen aplanar la curva</h3>
-                <Chart data={wdDData} countries={countries.filter(c => c.wd )} />
+                <h3>Países que consiguen aplanar la curva</h3>
+                <Chart data={this.getDataset()} countries={countries.filter(c => c.wd )} />
                 
               </Grid.Column>
             </Grid.Row>
             <Grid.Row >
               <Grid.Column width={8}>
-                <h3>Fallecidos por covid-19 en países con acciones diferentes al resto del mundo</h3>
-                <Chart data={optionDData} countries={countries.filter(c => c.option )} />
+                <h3>Países con acciones diferentes al resto del mundo</h3>
+                <Chart data={this.getDataset()} countries={countries.filter(c => c.option )} />
               </Grid.Column>
               <Grid.Column width={8}>
-                <h3>Fallecidos por covid-19 en países con acciones en etapas tempranas</h3>
-                <Chart data={earlyDData} countries={countries.filter(c => c.early )} />
+                <h3>Países con acciones en etapas tempranas</h3>
+                <Chart data={this.getDataset()} countries={countries.filter(c => c.early )} />
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
-              <Grid.Column width={8}>
-                <h3>Confirmados por covid-19 en países similares en LatAm</h3>
-                <Chart data={similarIData} countries={countries.filter(c => c.similar )}  max={this.state.mxAccCases} />
-              </Grid.Column>
-              <Grid.Column width={8}>
-                <h3>Confirmados por covid-19 en países que consiguen aplanar la curva</h3>
-                <Chart data={wdIData} countries={countries.filter(c => c.wd )} max={this.state.mxAccCases} />
-                
-              </Grid.Column>
-            </Grid.Row>
-            <Grid.Row >
-              <Grid.Column width={8}>
-                <h3>Confirmados por covid-19 en países con acciones diferentes al resto del mundo</h3>
-                <Chart data={optionIData} countries={countries.filter(c => c.option )} max={this.state.mxAccCases} />
-              </Grid.Column>
-              <Grid.Column width={8}>
-                <h3>Confirmados por covid-19 en países con acciones en etapas tempranas</h3>
-                <Chart data={earlyIData} countries={countries.filter(c => c.early )} max={this.state.mxAccCases} />
-              </Grid.Column>
-            </Grid.Row>
-
           </Grid>
           <Divider />
           <Container text>
