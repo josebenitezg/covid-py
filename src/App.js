@@ -208,7 +208,7 @@ class App extends Component {
         <h1>En el mundo 🌍 Fallecidos: {this.state.totalDeaths} - Infectados: {this.state.totalConfirmed} </h1>
         <h1>En Paraguay 🇵🇾 Fallecidos: {this.state.pydeath} - Infectados: {this.state.pyacccases} </h1>
         <small>{currentStringDate}</small>
-        <Menu inverted tabular>
+        <Menu inverted secondary>
           <Menu.Item
             id='deaths'
             name={nameTabA}
