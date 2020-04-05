@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Spain = (props) => {
+const Paraguay = (props) => {
     const {cx, cy, stroke, payload, value} = props;
     return (
         // <svg x={cx - 10} y={cy - 10} width={20} height={20} fill="green" viewBox="0 0 1024 1024">viewBox="0 0 512 512"
@@ -45,4 +45,4 @@ const Spain = (props) => {
     );
 }
 
-export default Spain
+export default Paraguay
