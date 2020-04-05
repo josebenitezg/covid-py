@@ -42,7 +42,7 @@ class growChart extends Component {
                 
               }  else {
                 
-                return (<Line key={country.key} type="monotone" dataKey={country.key }  stroke={this.getRandomColor(country)} strokeWidth={0.5} label={country.name} dot={false} /> )
+                return (<Line key={country.key} type="monotone" dataKey={country.key }  stroke={this.getRandomColor(country)} strokeWidth={2} label={country.name} dot={false} /> )
               }
 
           })}
