@@ -8,38 +8,38 @@ const Paraguay = (props) => {
   <path fill="#0038a8" d="M0 319.7h640V480H0z"/>
   <path fill="#fff" d="M0 160h640v160H0z"/>
   <path fill="#d52b1e" d="M0 0h640v160H0z"/>
-  <g fill="none" stroke="#000" transform="translate(-116.4) scale(1.45455)">
+  <g key={9} fill="none" stroke="#000" transform="translate(-116.4) scale(1.45455)">
     <circle cx="300" cy="165" r="42.2" stroke-width="1.1"/>
     <circle cx="300" cy="165" r="34.7" stroke-width=".5"/>
     <circle cx="300" cy="165" r="26.6" stroke-width=".4"/>
 </g>
-<g>
+<g key={10}>
 </g>
-<g>
+<g key={11}>
+</g >
+<g key={12}>
 </g>
-<g>
+<g key={13}>
 </g>
-<g>
+<g key={14}>
 </g>
-<g>
+<g key={15}>
 </g>
-<g>
+<g key={16}>
 </g>
-<g>
+<g key={17}>
 </g>
-<g>
+<g key={18}>
 </g>
-<g>
+<g key={19}>
 </g>
-<g>
+<g key={20}>
 </g>
-<g>
+<g key={21}>
 </g>
-<g>
+<g key={22}>
 </g>
-<g>
-</g>
-<g>
+<g key={23}>
 </g>
 </svg>
     );
