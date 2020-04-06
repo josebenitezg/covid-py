@@ -37,7 +37,7 @@ class growChart extends Component {
           <Legend label="Confirmados acumulados" />
           {this.props.countries.map(country => {
 
-              if(country.key == "Paraguay"){
+              if(country.key === "Paraguay"){
                 return (<Line key={country.key} type="monotone" dataKey={country.key} stroke={this.getRandomColor(country)} strokeWidth={3} label={country.name} dot={Paraguay}  />)
                 
               }  else {
