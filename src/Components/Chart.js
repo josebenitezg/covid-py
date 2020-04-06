@@ -32,7 +32,7 @@ class growChart extends Component {
           <YAxis  type="number" label={{ value: 'Fallecidos', angle: -90, position: 'insideLeft' }}  />
           {/* <ReferenceLine y={75} label="Max" stroke="red" /> */}
           <ReferenceLine x='3/09/20' stroke="red" label="Fase II PY" />
-          <CartesianGrid strokeDasharray="25 25" />
+          <CartesianGrid strokeDasharray="5 5" />
           <Tooltip />
           <Legend label="Confirmados acumulados" />
           {this.props.countries.map(country => {
