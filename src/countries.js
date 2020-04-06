@@ -67,8 +67,8 @@ module.exports.countries =  [
     early: false,
     inflectiona: '3/13/2020'
   },
-    {key: "United Kingdom",
-    name: "UK",
+    {key: "France",
+    name: "Francia",
     similar: false,
     option: true,
     wd: false,
@@ -83,8 +83,8 @@ module.exports.countries =  [
     early: false,
     inflectiona: '3/13/2020'
   },
-    {key: "Sweden",
-    name: "Suecia",
+    {key: "US",
+    name: "Estados Unidos",
     similar: false,
     option: true,
     wd: false,
@@ -131,8 +131,8 @@ module.exports.countries =  [
   early: true,
   inflectiona: '3/13/2020'
   },
-  {key: "Netherlands",
-  name: "Países Bajos",
+  {key: "Italy",
+  name: "Italia",
   similar: false,
   option: true,
   wd: false,
