@@ -205,8 +205,8 @@ class App extends Component {
 
     return (
       <Container fluid>
-        <h1>En el mundo 🌍 Fallecidos: {this.state.totalDeaths} - Infectados: {this.state.totalConfirmed} </h1>
-        <h1>En Paraguay 🇵🇾 Fallecidos: {this.state.pydeath} - Infectados: {this.state.pyacccases} </h1>
+        <h2>{this.state.totalDeaths} fallecidos y {this.state.totalConfirmed} infectados en el mundo 🌍</h2>
+        <h2>{this.state.pydeath} fallecidos y {this.state.pyacccases} infectados en Paraguay 🇵🇾</h2>
         <small>{currentStringDate}</small>
         <Menu inverted secondary>
           <Menu.Item
